@@ -1,38 +1,41 @@
 import connection from '../dbmodules/connection';
 
 export default {
-
-    select() {
-        connection.query('select * from currency', function (err, res) {
-            if (err) throw err;
-            console.log(res);
-        });
+    select(callback) {
+        connection.query('select * from currency',
+            (err, res) => {
+                if (err) throw err;
+                callback(res);
+            });
     },
-    insert() {
+    insert(callback) {
         let currency = {
             currencyname: 'name',
             currencycountry: 'country',
             currencycountryflagpic: 'flag.jpg',
             currencypic: 'pic.jpg'
         }
-        connection.query('insert into currency set ?', currency, function (err, res) {
-            if (err) throw err;
-            console.log(res);
-        });
+        connection.query('insert into currency set ?', currency,
+            (err, res) => {
+                if (err) throw err;
+                callback(res);
+            });
     },
-    update() {
+    update(callback) {
         let currency = {
             currencyname: 'uname'
         }
-        connection.query('update currency set ?', currency, function (err, res) {
-            if (err) throw err;
-            console.log(res);
-        });
+        connection.query('update currency set ?', currency,
+            (err, res) => {
+                if (err) throw err;
+                callback(res);
+            });
     },
-    delete() {
-        connection.query('delete from currency', function (err, res) {
-            if (err) throw err;
-            console.log(res);
-        });
-    },
+    delete(callback) {
+        connection.query('delete from currency',
+            (err, res) => {
+                if (err) throw err;
+                callback(res);
+            });
+    }
 }

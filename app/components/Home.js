@@ -7,10 +7,18 @@ import * as CRUD from '../dbmodules/crud';
 export default class Home extends Component {
   constructor(props) {
     super(props);
-    CRUD.delete();
-    CRUD.insert();
-    CRUD.update();
-    CRUD.select();
+    CRUD.delete((res) => {
+      console.log(res);
+    });
+    CRUD.insert((res) => {
+      console.log(res);
+    });
+    CRUD.update((res) => {
+      console.log(res);
+    });
+    CRUD.select((res) => {
+      console.log(res);
+    });
   }
   render() {
     return (
