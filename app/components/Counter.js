@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Counter.css';
-import { connect, close } from '../dbmodules/connectdb';
 
 class Counter extends Component {
   props: {
@@ -12,10 +11,7 @@ class Counter extends Component {
     decrement: () => void,
     counter: number
   };
-  constructor(props) {
-    super(props);
-    close();
-  }
+  
   render() {
     const { increment, incrementIfOdd, incrementAsync, decrement, counter } = this.props;
     return (

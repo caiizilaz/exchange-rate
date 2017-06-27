@@ -2,12 +2,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Home.css';
-import { connect, close } from '../dbmodules/connectdb';
+import * as CRUD from '../dbmodules/crud';
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
-    connect();
+    CRUD.delete();
+    CRUD.insert();
+    CRUD.update();
+    CRUD.select();
   }
   render() {
     return (

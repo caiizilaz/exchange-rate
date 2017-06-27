@@ -1,9 +1,5 @@
-import * as mysql from 'mysql';
-let connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root'
-});
+import connection from '../dbmodules/connection';
+
 function connect() {
     connection.connect((err) => {
         chkRes('connect', err);
