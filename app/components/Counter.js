@@ -11,7 +11,6 @@ class Counter extends Component {
     decrement: () => void,
     counter: number
   };
-  
   render() {
     const { increment, incrementIfOdd, incrementAsync, decrement, counter } = this.props;
     return (
@@ -21,7 +20,7 @@ class Counter extends Component {
             <i className="fa fa-arrow-left fa-3x" />
           </Link>
         </div>
-        <div className={`counter ${styles.counter}`} data-tid="counter">
+        {/*<div className={`counter ${styles.counter}`} data-tid="counter">
           {counter}
         </div>
         <div className={styles.btnGroup}>
@@ -33,7 +32,7 @@ class Counter extends Component {
           </button>
           <button className={styles.btn} onClick={incrementIfOdd} data-tclass="btn">odd</button>
           <button className={styles.btn} onClick={() => incrementAsync()} data-tclass="btn">async</button>
-        </div>
+        </div>*/}
       </div>
     );
   }
