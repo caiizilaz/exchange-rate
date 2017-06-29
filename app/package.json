@@ -15,6 +15,6 @@
   "license": "MIT",
   "dependencies": {
     "mysql": "^2.13.0",
-    "react-select": "^1.0.0-rc.5"
+    "react-autocomplete": "^1.5.9"
   }
 }

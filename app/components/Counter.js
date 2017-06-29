@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Counter.css';
+import Autocomplete from 'react-autocomplete';
 
 class Counter extends Component {
   props: {
@@ -11,6 +12,16 @@ class Counter extends Component {
     decrement: () => void,
     counter: number
   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: [
+        { label: 'apple' },
+        { label: 'banana' },
+        { label: 'pear' }
+      ]
+    }
+  }
   render() {
     const { increment, incrementIfOdd, incrementAsync, decrement, counter } = this.props;
     return (
@@ -20,6 +31,18 @@ class Counter extends Component {
             <i className="fa fa-arrow-left fa-3x" />
           </Link>
         </div>
+        <Autocomplete
+          getItemValue={(item) => item.label}
+          items={this.state.items}
+          renderItem={(item, isHighlighted) =>
+            <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
+              {item.label}
+            </div>
+          }
+          value={this.state.selected}
+          onChange={(e) => this.setState({ selected: e.target.value })}
+          onSelect={(val) => this.setState({ selected: val })}
+        />
         {/*<div className={`counter ${styles.counter}`} data-tid="counter">
           {counter}
         </div>
