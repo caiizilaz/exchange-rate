@@ -38,7 +38,7 @@
 
 .container {
   position: absolute;
-  top: 30%;
+  top: 10%;
   left: 10px;
-  text-align: center;
+  min-width: 10rem;
 }

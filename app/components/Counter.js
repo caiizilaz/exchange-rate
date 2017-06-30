@@ -2,7 +2,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Counter.css';
-import Autocomplete from 'react-autocomplete';
+
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
 class Counter extends Component {
   props: {
@@ -12,14 +14,25 @@ class Counter extends Component {
     decrement: () => void,
     counter: number
   };
+  options = [
+    { value: 'one', label: 'One' },
+    { value: 'two', label: 'Two' }
+  ];
+  logChange(val) {
+    if (val !== null) {
+      this.setState({
+        selectedVal: val.value
+      });
+    } else {
+      this.setState({
+        selectedVal: null
+      });
+    }
+  }
   constructor(props) {
     super(props);
     this.state = {
-      items: [
-        { label: 'apple' },
-        { label: 'banana' },
-        { label: 'pear' }
-      ]
+      selectedVal: 'No Selected'
     }
   }
   render() {
@@ -31,18 +44,15 @@ class Counter extends Component {
             <i className="fa fa-arrow-left fa-3x" />
           </Link>
         </div>
-        <Autocomplete
-          getItemValue={(item) => item.label}
-          items={this.state.items}
-          renderItem={(item, isHighlighted) =>
-            <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
-              {item.label}
-            </div>
-          }
-          value={this.state.selected}
-          onChange={(e) => this.setState({ selected: e.target.value })}
-          onSelect={(val) => this.setState({ selected: val })}
-        />
+        <div className={styles.container} data-tid="container">
+          <h3>สกุลเงิน</h3>
+          <Select
+            name="form-field-name"
+            value={this.state.selectedVal}
+            options={this.options}
+            onChange={this.logChange.bind(this)}
+          />
+        </div>
         {/*<div className={`counter ${styles.counter}`} data-tid="counter">
           {counter}
         </div>
