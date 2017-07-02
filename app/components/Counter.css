@@ -37,8 +37,50 @@
 }
 
 .container {
+  padding-top: 50px;
+  width: 40%;
+  padding-left: 30%;
+  padding-right: 30%;
+}
+
+.SelectContainer {
+  width: 150px;
+  display: inline-block;
+}
+
+.addCurrency {
   position: absolute;
-  top: 10%;
-  left: 10px;
-  min-width: 10rem;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.editCurrency {
+  position: absolute;
+  margin: 5px 5px 5px 40px;
+  cursor: pointer;
+}
+
+.paddingTopMinus {
+  padding-top: -20px;
+}
+
+.containerMinus {
+  padding-top: 10px;
+  width: 40%;
+  padding-left: 30%;
+  padding-right: 30%;
+}
+
+.input {
+  margin: 5px;
+}
+
+.table {
+  border: 1px solid black;
+  border-spacing: 0px;
+}
+
+.tr {
+  padding: 5px;
+  border: 1px solid black;
 }
