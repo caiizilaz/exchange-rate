@@ -1,8 +1,8 @@
 .container {
-  position: absolute;
-  top: 10%;
-  left: 10px;
-  text-align: center;
+  padding-top: 50px;
+  width: 70%;
+  padding-left: 15%;
+  padding-right: 15%;
 }
 
 .container h2 {
@@ -16,4 +16,23 @@
 .settingButton {
   position: absolute;
   right: 0;
+}
+
+.th {
+  padding: 5px;
+  background: #000000;
+  color: #ffffff;
+  min-width: 120px;
+}
+
+.tr {
+  padding: 5px;
+  min-width: 120px;
+  text-align: center;
+  border-bottom: 1px solid #000000;
+}
+
+.table {
+  border-spacing: 0px;
+  margin-top: 10px;
 }

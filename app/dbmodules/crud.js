@@ -38,7 +38,13 @@ export default {
             });
     },
     selectDetail(id, callback) {
-        connection.query('select * from detail where currencyid = ' + id,
+        let query = '';
+        if (id === null) {
+            query = 'select * from detail'
+        } else {
+            query = 'select * from detail where currencyid = ' + id
+        }
+        connection.query(query,
             (err, res) => {
                 if (err) throw err;
                 callback(res);
@@ -46,6 +52,22 @@ export default {
     },
     deleteDetail(id, callback) {
         connection.query('delete from detail where detailid = ' + id,
+            (err, res) => {
+                if (err) throw err;
+                callback(res);
+            });
+    },
+    updateDetail(detail, id, callback) {
+        connection.query('update detail set ? where detailid = ' + id, detail,
+            (err, res) => {
+                if (err) throw err;
+                callback(res);
+            });
+    },
+    selectedInner(callback) {
+        let query = `select * from currency inner join detail 
+        on currency.currencyid = detail.currencyid`;
+        connection.query(query,
             (err, res) => {
                 if (err) throw err;
                 callback(res);

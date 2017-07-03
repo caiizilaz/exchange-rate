@@ -9,14 +9,20 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currency: []
+      currency: [{
+        detail: []
+      }]
     }
     this.getData();
   }
   getData() {
-    CRUD.select((res) => {
+    CRUD.selectedInner((res) => {
       this.setState({
         currency: res
+      });
+
+      this.state.currency.map((c, i) => {
+        c.guid = i + 1;
       });
     });
   }
@@ -29,13 +35,31 @@ export default class Home extends Component {
           </Link>
         </div>
         <div className={styles.container} data-tid="container">
-          <ul>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th className={styles.th} style={{minWidth: 400}}>Currency</th>
+                <th className={styles.th}>Denom</th>
+                <th className={styles.th}>Buy</th>
+                <th className={styles.th}>Sell</th>
+              </tr>
+            </thead>
+          </table>
+          <tbody>
             {
               this.state.currency.map((c) => {
-                return <li key={c.currencyid}>{c.currencyname}</li>
+                return <tr className={styles.row} key={c.guid}>
+                  <td className={styles.tr} style={{minWidth: 400, textAlign: 'left'}}>
+                    <div>{c.currencyname}</div>
+                    <div>{c.currencycountry}</div>
+                  </td>
+                  <td className={styles.tr}>{c.detaildenom}</td>
+                  <td className={styles.tr}>{c.detailbuy}</td>
+                  <td className={styles.tr}>{c.detailsell}</td>
+                </tr>
               })
             }
-          </ul>
+          </tbody>
         </div>
       </div>
     );

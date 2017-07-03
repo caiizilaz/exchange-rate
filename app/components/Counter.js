@@ -145,10 +145,43 @@ class Counter extends Component {
       this.manageDetail();
     });
   }
+  editDetail(data) {
+    this.setState({
+      manageMode: 'editDetail',
+      selectedDetail: data.detailid,
+      selectedDenom: data.detaildenom,
+      selectedBuy: data.detailbuy,
+      selectedSell: data.detailsell
+    });
+  }
   cancelAddDetail() {
     this.setState({
       manageMode: 'manageDetail'
     })
+  }
+  cancelEditDetail() {
+    this.setState({
+      selectedDetail: ''
+    })
+  }
+  saveEditDetail() {
+    if (this.state.selectedBuy === ''
+      || this.state.selectedSell === '') {
+      alert('กรอกข้อมูลให้ครบถ้วน');
+    } else {
+      let detail = {
+        detaildenom: this.state.selectedDenom,
+        detailbuy: this.state.selectedBuy,
+        detailsell: this.state.selectedSell
+      }
+      CRUD.updateDetail(detail, this.state.selectedDetail, (res) => {
+        alert('แก้ไขรายละเอียดสกุลเงินสำเร็จ');
+        this.setState({
+          selectedDetail: ''
+        });
+        this.manageDetail();
+      });
+    }
   }
   constructor(props) {
     super(props);
@@ -161,7 +194,11 @@ class Counter extends Component {
       selectedCurrencyCountry: '',
       denom: '',
       buy: '',
-      sell: ''
+      sell: '',
+      selectedDetail: '',
+      selectedDenom: '',
+      selectedBuy: '',
+      selectedSell: '',
     }
     this.getData();
   }
@@ -198,7 +235,6 @@ class Counter extends Component {
               </span>
               : null
           }
-          <hr />
         </div>
         {
           this.state.manageMode === 'add' ?
@@ -251,7 +287,8 @@ class Counter extends Component {
         }
         {
           this.state.manageMode === 'manageDetail'
-            || this.state.manageMode === 'addDetail' ?
+            || this.state.manageMode === 'addDetail'
+            || this.state.manageMode === 'editDetail' ?
             <div className={styles.containerMinus}>
               <h3>จัดการรายละเอียดสกุลเงิน</h3>
               <button
@@ -294,7 +331,6 @@ class Counter extends Component {
                   </div>
                   : null
               }
-              <hr/>
               <table className={styles.table}>
                 <thead>
                   <tr>
@@ -307,18 +343,57 @@ class Counter extends Component {
                 <tbody>
                   {
                     this.state.detailList.map((d) => {
-                      return <tr key={d.detailid}>
-                        <td className={styles.tr}>{d.detaildenom}</td>
-                        <td className={styles.tr}>{d.detailbuy}</td>
-                        <td className={styles.tr}>{d.detailsell}</td>
-                        <td className={styles.tr}>
-                          <button>แก้ไข</button>
-                          <button
-                            onClick={() => this.deleteDetail(d.detailid)}>
-                            ลบ
-                          </button>
-                        </td>
-                      </tr>
+                      if (this.state.selectedDetail === d.detailid) {
+                        return <tr key={d.detailid}>
+                          <td className={styles.tr}>
+                            <input type="text"
+                              name="selectedDenom"
+                              className={styles.input}
+                              value={this.state.selectedDenom}
+                              onChange={this.onChange.bind(this)} />
+                          </td>
+                          <td className={styles.tr}>
+                            <input type="number"
+                              name="selectedBuy"
+                              className={styles.input}
+                              value={this.state.selectedBuy}
+                              onChange={this.onChange.bind(this)} />
+                          </td>
+                          <td className={styles.tr}>
+                            <input type="number"
+                              name="selectedSell"
+                              className={styles.input}
+                              value={this.state.selectedSell}
+                              onChange={this.onChange.bind(this)} />
+                          </td>
+                          <td className={styles.tr}>
+                            <button
+                              onClick={() => this.saveEditDetail()}>
+                              บันทึก
+                              </button>
+                            <button
+                              onClick={() => this.cancelEditDetail()}>
+                              ยกเลิก
+                              </button>
+                          </td>
+                        </tr>
+                      } else {
+                        return <tr key={d.detailid}>
+                          <td className={styles.tr}>{d.detaildenom}</td>
+                          <td className={styles.tr}>{d.detailbuy}</td>
+                          <td className={styles.tr}>{d.detailsell}</td>
+                          <td className={styles.tr}>
+                            <button
+                              onClick={() => this.editDetail(d)}>
+                              แก้ไข
+                              </button>
+                            <button
+                              onClick={() => this.deleteDetail(d.detailid)}>
+                              ลบ
+                              </button>
+                          </td>
+                        </tr>
+                      }
                     })
                   }
                 </tbody>
