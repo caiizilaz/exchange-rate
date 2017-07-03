@@ -7,6 +7,8 @@ import * as CRUD from '../dbmodules/crud';
 
 export default class Home extends Component {
   constructor(props) {
+    let path = location.protocol + '//' + location.host;
+    console.log(path);
     super(props);
     this.state = {
       currency: [{
@@ -24,6 +26,8 @@ export default class Home extends Component {
       this.state.currency.map((c, i) => {
         c.guid = i + 1;
       });
+
+      console.log(this.state.currency);
     });
   }
   render() {
@@ -35,31 +39,45 @@ export default class Home extends Component {
           </Link>
         </div>
         <div className={styles.container} data-tid="container">
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th className={styles.th} style={{minWidth: 400}}>Currency</th>
-                <th className={styles.th}>Denom</th>
-                <th className={styles.th}>Buy</th>
-                <th className={styles.th}>Sell</th>
-              </tr>
-            </thead>
-          </table>
-          <tbody>
-            {
-              this.state.currency.map((c) => {
-                return <tr className={styles.row} key={c.guid}>
-                  <td className={styles.tr} style={{minWidth: 400, textAlign: 'left'}}>
-                    <div>{c.currencyname}</div>
-                    <div>{c.currencycountry}</div>
-                  </td>
-                  <td className={styles.tr}>{c.detaildenom}</td>
-                  <td className={styles.tr}>{c.detailbuy}</td>
-                  <td className={styles.tr}>{c.detailsell}</td>
+          <div className={styles.tableContainer}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th className={styles.th} style={{ minWidth: 400 }}>Currency</th>
+                  <th className={styles.th}>Denom</th>
+                  <th className={styles.th}>Buy</th>
+                  <th className={styles.th}>Sell</th>
                 </tr>
-              })
-            }
-          </tbody>
+              </thead>
+              <tbody>
+                {
+                  this.state.currency.map((c, i) => {
+                    return <tr className={styles.row} key={c.guid}>
+                      <td className={styles.tr} style={{ minWidth: 500, textAlign: 'left' }}>
+                        {
+                          i === 0 ?
+                            <div>
+                              <div className={styles.currency}>{c.currencyname}</div>
+                              <div className={styles.country}>{c.currencycountry}</div>
+                            </div>
+                            : this.state.currency[i].currencyid !== this.state.currency[i - 1].currencyid ?
+                            <div>
+                              <div className={styles.currency}>{c.currencyname}</div>
+                              <div className={styles.country}>{c.currencycountry}</div>
+                            </div>
+                            : null
+                        }
+                      </td>
+                      {/*this.state.currency[i].currencyid !== this.state.currency[i + 1].currencyid ? styles.borderBottom : null*/}
+                      <td className={styles.tr}>{c.detaildenom}</td> 
+                      <td className={styles.green}>{c.detailbuy}</td>
+                      <td className={styles.red}>{c.detailsell}</td>
+                    </tr>
+                  })
+                }
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     );

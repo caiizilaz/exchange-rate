@@ -9,6 +9,10 @@
   font-size: 5rem;
 }
 
+.tableContainer {
+  width: 100%;
+}
+
 .container a {
   font-size: 1.4rem;
 }
@@ -19,20 +23,50 @@
 }
 
 .th {
-  padding: 5px;
   background: #000000;
   color: #ffffff;
-  min-width: 120px;
+  min-width: 130px;
 }
 
-.tr {
-  padding: 5px;
-  min-width: 120px;
+.trBorder {
+  min-width: 130px;
   text-align: center;
   border-bottom: 1px solid #000000;
 }
 
+.tr {
+  min-width: 130px;
+  text-align: center;
+}
+
 .table {
   border-spacing: 0px;
-  margin-top: 10px;
+  margin: 10px auto;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.red {
+  min-width: 130px;
+  text-align: center;
+  color: red;
+}
+
+.green {
+  min-width: 130px;
+  text-align: center;
+  color: green;
+}
+
+.row {
+  font-size: 20px;
+}
+
+.currency {
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.country {
+  font-weight: 400;
 }
