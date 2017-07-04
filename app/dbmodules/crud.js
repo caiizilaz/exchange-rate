@@ -23,10 +23,13 @@ export default {
             });
     },
     delete(id, callback) {
-        connection.query('delete from currency where currencyid = ' + id,
-            (err, res) => {
-                if (err) throw err;
-                callback(res);
+        connection.query('delete from detail where currencyid = ' + id,
+            (e, r) => {
+                connection.query('delete from currency where currencyid = ' + id,
+                    (err, res) => {
+                        if (err) throw err;
+                        callback(res);
+                    });
             });
     },
     // Detail
@@ -40,9 +43,9 @@ export default {
     selectDetail(id, callback) {
         let query = '';
         if (id === null) {
-            query = 'select * from detail'
+            query = 'select * from detail';
         } else {
-            query = 'select * from detail where currencyid = ' + id
+            query = 'select * from detail where currencyid = ' + id;
         }
         connection.query(query,
             (err, res) => {

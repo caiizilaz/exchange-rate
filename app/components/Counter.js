@@ -52,7 +52,9 @@ class Counter extends Component {
     } else {
       let currency = {
         currencyname: this.state.selectedCurrencyName,
-        currencycountry: this.state.selectedCurrencyCountry
+        currencycountry: this.state.selectedCurrencyCountry,
+        currencycountryflagpic: this.state.selectedCurrencycountryflagpic,
+        currencypic: this.state.selectedCurrencypic
       }
       CRUD.update(currency, this.state.selectedCurrency, (res) => {
         alert('แก้ไขสกุลเงินสำเร็จ');
@@ -192,14 +194,26 @@ class Counter extends Component {
     e.preventDefault();
     for (let f of e.dataTransfer.files) {
       let replaced = f.path.replace(/\\/g, '/');
-      if (type === 'flagPic') {
-        this.setState({
-          currencycountryflagpic: replaced
-        });
-      } else if (type === 'bankPic') {
-        this.setState({
-          currencypic: replaced
-        });
+      if (this.state.manageMode === 'add') {
+        if (type === 'flagPic') {
+          this.setState({
+            currencycountryflagpic: replaced
+          });
+        } else if (type === 'bankPic') {
+          this.setState({
+            currencypic: replaced
+          });
+        }
+      } else if (this.state.manageMode === 'edit') {
+        if (type === 'flagPic') {
+          this.setState({
+            selectedCurrencycountryflagpic: replaced
+          });
+        } else if (type === 'bankPic') {
+          this.setState({
+            selectedCurrencypic: replaced
+          });
+        }
       }
     }
   }
@@ -214,6 +228,8 @@ class Counter extends Component {
       currencycountryflagpic: '',
       selectedCurrencyName: '',
       selectedCurrencyCountry: '',
+      selectedCurrencypic: '',
+      selectedCurrencycountryflagpic: '',
       denom: '',
       buy: '',
       sell: '',
@@ -275,13 +291,13 @@ class Counter extends Component {
                 className={styles.input}
                 value={this.state.currencycountry}
                 onChange={this.onChange.bind(this)} />
-              <div id="drag-file"
+              <div
                 onDragOver={this.preventDefault}
                 onDrop={(e) => this.drop(e, 'flagPic')}
                 className={styles.dragFile}>
                 ลากและวางรูปธงชาติ<br />ในกรอบสีแดงนี้
               </div>
-              <div id="drag-file"
+              <div
                 onDragOver={this.preventDefault}
                 onDrop={(e) => this.drop(e, 'bankPic')}
                 className={styles.dragFileCur}>
@@ -311,6 +327,18 @@ class Counter extends Component {
                 className={styles.input}
                 value={this.state.selectedCurrencyCountry}
                 onChange={this.onChange.bind(this)} />
+              <div
+                onDragOver={this.preventDefault}
+                onDrop={(e) => this.drop(e, 'flagPic')}
+                className={styles.dragFile}>
+                ลากและวางรูปธงชาติ<br />ในกรอบสีแดงนี้
+              </div>
+              <div
+                onDragOver={this.preventDefault}
+                onDrop={(e) => this.drop(e, 'bankPic')}
+                className={styles.dragFileCur}>
+                ลากและวางรูปแบงค์<br />ในกรอบสีม่วงนี้
+              </div>
               <div>
                 <button onClick={() => this.edit()}>แก้ไข</button>
                 <button onClick={() => this.remove()}>ลบ</button>

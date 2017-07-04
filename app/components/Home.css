@@ -39,6 +39,12 @@
   text-align: center;
 }
 
+.trWBorder {
+  min-width: 130px;
+  text-align: center;
+  border: 1px solid black;
+}
+
 .table {
   border-spacing: 0px;
   margin: 10px auto;

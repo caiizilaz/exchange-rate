@@ -11,8 +11,7 @@ export default class Home extends Component {
     this.state = {
       currency: [{
         detail: []
-      }],
-      path: `C:/Users/flukky/Downloads/abstraction-668966_960_720.jpg`
+      }]
     }
     this.getData();
   }
@@ -25,8 +24,6 @@ export default class Home extends Component {
       this.state.currency.map((c, i) => {
         c.guid = i + 1;
       });
-
-      console.log(this.state.currency);
     });
   }
   render() {
@@ -71,7 +68,7 @@ export default class Home extends Component {
                                 </div>
                                 <div className={styles.country}>{c.currencycountry}</div>
                                 <img className={styles.currencyPic} width="110" height="55" src={c.currencypic} />
-                              </div>
+                              </div> 
                               : null
                         }
                       </td>
