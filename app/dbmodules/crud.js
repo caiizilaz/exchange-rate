@@ -66,7 +66,8 @@ export default {
     },
     selectedInner(callback) {
         let query = `select * from currency inner join detail 
-        on currency.currencyid = detail.currencyid`;
+                    on currency.currencyid = detail.currencyid
+                    order by currency.currencyid`;
         connection.query(query,
             (err, res) => {
                 if (err) throw err;

@@ -60,6 +60,7 @@
 
 .row {
   font-size: 20px;
+  height: 60px;
 }
 
 .currency {
@@ -69,4 +70,10 @@
 
 .country {
   font-weight: 400;
+}
+
+.currencyPic {
+  position: absolute;
+  margin-top: -60px;
+  margin-left: 250px;
 }

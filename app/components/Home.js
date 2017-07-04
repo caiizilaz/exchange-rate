@@ -7,13 +7,12 @@ import * as CRUD from '../dbmodules/crud';
 
 export default class Home extends Component {
   constructor(props) {
-    let path = location.protocol + '//' + location.host;
-    console.log(path);
     super(props);
     this.state = {
       currency: [{
         detail: []
-      }]
+      }],
+      path: `C:/Users/flukky/Downloads/abstraction-668966_960_720.jpg`
     }
     this.getData();
   }
@@ -57,19 +56,27 @@ export default class Home extends Component {
                         {
                           i === 0 ?
                             <div>
-                              <div className={styles.currency}>{c.currencyname}</div>
+                              <div className={styles.currency}>
+                                <img width="45" height="30" src={c.currencycountryflagpic} />
+                                &nbsp; {c.currencyname}
+                              </div>
                               <div className={styles.country}>{c.currencycountry}</div>
+                              <img className={styles.currencyPic} width="110" height="55" src={c.currencypic} />
                             </div>
                             : this.state.currency[i].currencyid !== this.state.currency[i - 1].currencyid ?
-                            <div>
-                              <div className={styles.currency}>{c.currencyname}</div>
-                              <div className={styles.country}>{c.currencycountry}</div>
-                            </div>
-                            : null
+                              <div>
+                                <div className={styles.currency}>
+                                  <img width="45" height="30" src={c.currencycountryflagpic} />
+                                  &nbsp; {c.currencyname}
+                                </div>
+                                <div className={styles.country}>{c.currencycountry}</div>
+                                <img className={styles.currencyPic} width="110" height="55" src={c.currencypic} />
+                              </div>
+                              : null
                         }
                       </td>
                       {/*this.state.currency[i].currencyid !== this.state.currency[i + 1].currencyid ? styles.borderBottom : null*/}
-                      <td className={styles.tr}>{c.detaildenom}</td> 
+                      <td className={styles.tr}>{c.detaildenom}</td>
                       <td className={styles.green}>{c.detailbuy}</td>
                       <td className={styles.red}>{c.detailsell}</td>
                     </tr>

@@ -31,7 +31,7 @@ CREATE TABLE `detail` (
   PRIMARY KEY (`detailid`),
   KEY `currencyid_idx` (`currencyid`),
   CONSTRAINT `currencyid` FOREIGN KEY (`currencyid`) REFERENCES `currency` (`currencyid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +40,7 @@ CREATE TABLE `detail` (
 
 LOCK TABLES `detail` WRITE;
 /*!40000 ALTER TABLE `detail` DISABLE KEYS */;
+INSERT INTO `detail` VALUES (2,39,'12',12,12.888),(3,39,'123',123,23),(4,39,'123',123,123),(5,40,'123',123,123),(7,42,'123e',1232,1233),(8,40,'1.1123',6.86444,7.75464),(9,43,'123',44,5567);
 /*!40000 ALTER TABLE `detail` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-27 11:25:53
+-- Dump completed on 2017-07-04 17:25:29

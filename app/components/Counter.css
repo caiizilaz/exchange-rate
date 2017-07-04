@@ -86,3 +86,21 @@
   border: 1px solid #000000;
   min-width: 185px;
 }
+
+.dragFile {
+  background-color: #EF4836;
+  color:white;
+  text-align: center;
+  width:250px;
+  height:250px;
+  font-size: 18px;
+}
+
+.dragFileCur {
+  background-color: #663399;
+  color:white;
+  text-align: center;
+  width:250px;
+  height:250px;
+  font-size: 18px;
+}

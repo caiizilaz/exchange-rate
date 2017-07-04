@@ -26,10 +26,10 @@ CREATE TABLE `currency` (
   `currencyid` int(11) NOT NULL AUTO_INCREMENT,
   `currencyname` varchar(5) DEFAULT NULL,
   `currencycountry` varchar(100) DEFAULT NULL,
-  `currencycountryflagpic` varchar(45) DEFAULT NULL,
-  `currencypic` varchar(45) DEFAULT NULL,
+  `currencycountryflagpic` varchar(500) DEFAULT NULL,
+  `currencypic` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`currencyid`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `currency` (
 
 LOCK TABLES `currency` WRITE;
 /*!40000 ALTER TABLE `currency` DISABLE KEYS */;
-INSERT INTO `currency` VALUES (16,'uname','country','flag.jpg','pic.jpg');
+INSERT INTO `currency` VALUES (39,'USD','United State',NULL,NULL),(40,'THB','Thailand',NULL,NULL),(42,'test','test',NULL,NULL),(43,'pic','testpic','C:/Users/flukky/Downloads/Software_Design.png','C:/Users/flukky/Downloads/abstraction-668966_960_720.jpg');
 /*!40000 ALTER TABLE `currency` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-27 11:25:53
+-- Dump completed on 2017-07-04 17:25:29

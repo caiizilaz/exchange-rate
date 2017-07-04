@@ -81,7 +81,9 @@ class Counter extends Component {
     } else {
       let currency = {
         currencyname: this.state.currencyname,
-        currencycountry: this.state.currencycountry
+        currencycountry: this.state.currencycountry,
+        currencycountryflagpic: this.state.currencycountryflagpic,
+        currencypic: this.state.currencypic
       }
       CRUD.insert(currency, (res) => {
         alert('เพิ่มสกุลเงินสำเร็จ');
@@ -183,6 +185,24 @@ class Counter extends Component {
       });
     }
   }
+  preventDefault(e) {
+    e.preventDefault();
+  }
+  drop(e, type) {
+    e.preventDefault();
+    for (let f of e.dataTransfer.files) {
+      let replaced = f.path.replace(/\\/g, '/');
+      if (type === 'flagPic') {
+        this.setState({
+          currencycountryflagpic: replaced
+        });
+      } else if (type === 'bankPic') {
+        this.setState({
+          currencypic: replaced
+        });
+      }
+    }
+  }
   constructor(props) {
     super(props);
     this.state = {
@@ -190,6 +210,8 @@ class Counter extends Component {
       manageMode: '',
       currencyname: '',
       currencycountry: '',
+      currencypic: '',
+      currencycountryflagpic: '',
       selectedCurrencyName: '',
       selectedCurrencyCountry: '',
       denom: '',
@@ -253,6 +275,18 @@ class Counter extends Component {
                 className={styles.input}
                 value={this.state.currencycountry}
                 onChange={this.onChange.bind(this)} />
+              <div id="drag-file"
+                onDragOver={this.preventDefault}
+                onDrop={(e) => this.drop(e, 'flagPic')}
+                className={styles.dragFile}>
+                ลากและวางรูปธงชาติ<br />ในกรอบสีแดงนี้
+              </div>
+              <div id="drag-file"
+                onDragOver={this.preventDefault}
+                onDrop={(e) => this.drop(e, 'bankPic')}
+                className={styles.dragFileCur}>
+                ลากและวางรูปแบงค์<br />ในกรอบสีม่วงนี้
+              </div>
               <div>
                 <button onClick={this.save.bind(this)}>เพิ่ม</button>
                 <button onClick={this.cancel.bind(this)}>ยกเลิก</button>
